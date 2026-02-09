@@ -13,11 +13,7 @@
 > A survey of multimodal medical reasoning models, taxonomies, benchmarks, and resources for increasingly autonomous, evidence-grounded clinical decision-making.
 
 <p align="center">
-  <img src="images/overview.png" alt="Overview" width="800"/>
-</p>
-
-<p align="center">
-  <img src="images/pipeline.png" alt="Pipeline" width="800"/>
+  <img src="images/timeline.png" alt="Timeline" width="800"/>
 </p>
 
 ---
