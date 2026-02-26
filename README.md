@@ -72,7 +72,7 @@
 ✨ **A comprehensive collection of research papers, datasets, benchmarks, and tools for medical reasoning in the era of multimodal foundation models** ✨
 
 This repository accompanies our survey paper and provides:
-- 📚 **200+ curated papers** on medical reasoning technologies and multimodal foundation models
+- 📚 **150+ curated papers** on medical reasoning technologies and multimodal foundation models
 - 🎯 **Systematic categorization** of reasoning approaches from CoT prompting to reinforcement learning
 - 🏥 **Multi-domain coverage** including radiology, pathology, genomics, temporal reasoning, and surgery
 - 📊 **Comprehensive benchmarks** across text, imaging, pathology, genomics, ECG/EEG, EHR, and multimodal data
@@ -222,175 +222,171 @@ Multi-agent systems that simulate clinical workflows and collaborative decision-
 
 ## 🎯 Medical Multimodal Reasoning
 
-### 3.1 Background and Taxonomy
+## 3 Understanding Multimodal: Data Curation and Modeling Strategy
 
-Recent research in medical multimodal reasoning moves models from "black-box" answers toward explainable medical thought—textual reasoning chains, retrieval of supporting evidence, and pixel/voxel grounding that links words to image regions.
+### 3.1 Motivation and Formulation of Multimodal Understanding in Medicine
 
-**Three Reasoning-Centered Categories:**
-1. **Med-VQA**: Reasoning over medical images with intermediate reasoning steps
-2. **Diagnostic Reasoning**: From observation to conclusion with evidence chains
-3. **Pixel/Voxel Grounding**: Aligning clinical text with precise image regions
+Recent advances in medical AI move beyond isolated perception toward structured multimodal understanding. Instead of focusing solely on single-modality accuracy, modern systems seek to align heterogeneous clinical signals (e.g., imaging, text, waveforms, structured records), ground predictions in meaningful evidence, and preserve reasoning faithfulness. In high-stakes settings, such understanding must ensure interpretability, evidence consistency, and professional validity. Methodologically, it is not simple modality aggregation, but the clinically grounded integration of cross-modal evidence, jointly shaped by reasoning-oriented data curation and modeling strategies that promote diagnostic depth and faithful evidence use.
 
----
+Accordingly, recent progress can be viewed along two complementary dimensions:
 
-### 3.2 Radiological Reasoner
+- **Reasoning-Oriented Data Curation**: Designing datasets and supervision signals that promote diagnostic depth, evidence consistency, and cross-modal dependency modeling beyond classification accuracy.  
+- **Model Design and Training Strategies**: Developing modality-aware architectures and reasoning-aligned objectives that internalize clinical structure and enforce faithful multimodal integration.
 
-CT and MRI reasoning requires integrating visual findings across slices/volumes, comparing scans over time, and producing explanations clinicians can verify.
+### 3.2 Reasoning-Oriented Data Curation
 
-#### 3.2.1 Med-VQA: Reasoning over Medical Images
+#### 3.2.1 Reasoning-Oriented Datasets
 
-| Paper/Model | Contribution | Modality | Year | Link |
-|-------------|--------------|----------|------|------|
-| **Professional MVQA Benchmark** | Neonatal brain MRI with HIE | MRI | 2025 | [OpenReview](https://openreview.net/forum?id=tnyxtaSve5) |
-| **MedVLThinker** | Open-source training recipe with RLVR | Multi-modal | 2025 | [arXiv:2508.02669](https://arxiv.org/abs/2508.02669) |
-| **Med-R1** | Reinforcement learning for medical VQA | Multi-modal | 2025 | [arXiv:2503.13939](https://arxiv.org/abs/2503.13939) |
-| **GMAI-VL-R1** | RL-driven multimodal medical reasoning | Multi-modal | 2025 | [arXiv:2504.01886](https://arxiv.org/abs/2504.01886) |
-| **Multi-agent Chest X-ray QA** | Specialized agents for reasoning | X-ray | 2025 | [Paper](https://api.semanticscholar.org/CorpusID:280527311) |
-| **MultiMedRes** | Zero-shot decomposable problems | Multi-modal | 2024 | [arXiv:2405.11640](https://arxiv.org/abs/2405.11640) |
+| Paper                                                        | Key Idea                                                     | Data Scale / Feature                    | Link                                               |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | --------------------------------------- | -------------------------------------------------- |
+| Neural-MedBench                                              | Beyond classification accuracy; evaluates depth and reasoning complexity | Deep reasoning benchmark                | https://arxiv.org/abs/2509.22258                   |
+| Evaluating Reasoning Faithfulness via Multimodal Perturbations | Tests faithfulness using image modifications                 | Perturbation-based evaluation           | https://arxiv.org/abs/2510.11196                   |
+| Patho-R1                                                     | Multimodal RL-based pathology expert reasoner                | 3.5M image-text pairs, 500K SFT samples | https://arxiv.org/abs/2505.11404                   |
+| MedVLThinker                                                 | Baselines for multimodal medical reasoning                   | Data filtered by reasoning difficulty   | https://arxiv.org/abs/2508.02669                   |
+| ECG Foundation Model                                         | Large-scale ECG pretraining                                  | 10M+ ECGs, 150 labels                   | https://www.nature.com/articles/s41586-024-07618-3 |
+| M3D                                                          | 3D multimodal medical dataset                                | 120K image-text + 662K instructions     | https://arxiv.org/abs/2404.00578                   |
+| Multimodal Generative AI Copilot for Pathology               | Large instruction corpus                                     | 456K instructions, 999K QA turns        | https://www.nature.com/articles/s41586-024-07618-3 |
+| DermoGPT                                                     | Morphology-grounded dermatology reasoning                    | 211K images, 772K trajectories          |                                                    |
 
-#### 3.2.2 Diagnostic Reasoning and Report Generation
+#### 3.2.2 Reasoning-Aware Curation Strategies
 
-| Model/Dataset | Contribution | Size/Scope | Year | Link |
-|---------------|--------------|------------|------|------|
-| **3D-BrainCT + BrainGPT** | Volumetric CT report generation | 18,885 CT-report pairs | 2024 | [Nature Comm](https://api.semanticscholar.org/CorpusID:270878503) |
-| **M3D-Data + M3D-LaMed** | Massive 3D medical dataset | 120K image-text, 662K instructions | 2024 | [arXiv:2404.00578](https://arxiv.org/abs/2404.00578) |
-| **MedTVT-QA** | GPT-4 augmented multimodal QA | ECG, X-ray, labs | 2025 | [Paper](https://api.semanticscholar.org/CorpusID:280016413) |
-| **MedTVT-R1** | GRPO with Jaccard reward | Multi-disease diagnosis | 2025 | [arXiv:2506.18512](https://arxiv.org/abs/2506.18512) |
-| **MedOrch** | Agent-based tool orchestration | 3D CT analysis | 2025 | [arXiv:2506.00235](https://arxiv.org/abs/2506.00235) |
-| **MedRegion-CT** | Region representative token pooling | 3D CT reports | 2025 | [arXiv:2506.23102](https://arxiv.org/abs/2506.23102) |
+| Paper           | Strategy                            | Core Contribution                          | Link                                           |
+| --------------- | ----------------------------------- | ------------------------------------------ | ---------------------------------------------- |
+| MedReason-R1    | Reinforcement learning + local zoom | Local region refinement for CT diagnosis   | https://arxiv.org/abs/2510.19626               |
+| BioReason       | Variant-network–guided QA synthesis | Multi-step reasoning via LLM distillation  | https://arxiv.org/abs/2505.23579               |
+| GMAI-VL-R1      | RL-based reasoning data synthesis   | Step-by-step data via rejection sampling   | https://arxiv.org/abs/2504.01886               |
+| ReXGroundingCT  | Three-stage grounding pipeline      | Free-text to segmentation masks            | https://arxiv.org/abs/2507.22030               |
+| Quilt-LLaVA     | Cursor-tracked narrative extraction | Spatial grounding from educational videos  | https://ieeexplore.ieee.org/document/10656199/ |
+| VideoPath-LLaVA | Video instruction tuning            | Diagnostic reasoning from pathology videos | https://arxiv.org/abs/2505.04192               |
 
-#### 3.2.3 Reasoning to Regions: Pixel/Voxel-Level Grounding
+------
 
-| Dataset/Model | Task | Contribution | Year | Link |
-|---------------|------|--------------|------|------|
-| **UMRG-14K + MedReasoner** | Unified Medical Reasoning Grounding | 14K cases, 10 modalities with ROI masks | 2025 | [arXiv:2508.08177](https://arxiv.org/abs/2508.08177) |
-| **ReXGroundingCT** | 3D CT segmentation grounding | 3,142 chest CT scans, 8,028 masks | 2025 | [arXiv:2507.22030](https://arxiv.org/abs/2507.22030) |
-| **Maira-2** | Grounded radiology report generation | Text-to-region alignment | 2024 | [arXiv:2406.04449](https://arxiv.org/abs/2406.04449) |
-| **PRS-Med** | Position reasoning segmentation | VLM for medical imaging | 2025 | [arXiv:2505.11872](https://arxiv.org/abs/2505.11872) |
+### 3.3 Model Design and Training
 
-#### 3.2.4 Ultrasound Reasoning
+#### 3.3.1 Modality-Aware Architectures
 
-| Model/System | Focus | Innovation | Year | Link |
-|--------------|-------|------------|------|------|
-| **Semantic Scene Graph for Ultrasound** | Ultrasound explanation | Scene graph + scanning guidance | 2025 | [arXiv:2506.19683](https://arxiv.org/abs/2506.19683) |
-| **LLaVA-Ultra** | Chinese ultrasound | Large Chinese language-vision assistant | 2024 | [arXiv:2410.15074](https://arxiv.org/abs/2410.15074) |
-| **HAIBU-ReMUD** | Ultrasound reasoning | Multi-modal dataset bridging domains | 2025 | [arXiv:2506.07837](https://arxiv.org/abs/2506.07837) |
+| Model      | Design Focus                          | Highlight                          | Link                                   |
+| ---------- | ------------------------------------- | ---------------------------------- | -------------------------------------- |
+| FLEMING-VL | Unified multimodal input              | Universal medical visual reasoning | https://arxiv.org/abs/2511.00916       |
+| Med-R1     | Cross-modality generalization         | 8 imaging modalities               | https://arxiv.org/abs/2503.13939       |
+| DiagECG    | Discretized ECG tokenization          | LLM-driven ECG reasoning           | https://arxiv.org/abs/2501.01234       |
+| MedTsLLM   | Time-series + text fusion             | Patch reprogramming                | https://proceedings.mlr.press/mlhc2024 |
+| SurgVidLM  | Multi-grained surgical video modeling | Full-video → clip-level reasoning  | https://arxiv.org/abs/2506.17873       |
+| BrainGPT   | Autoregressive EEG foundation model   | Electrode-wise modeling            | https://arxiv.org/html/2410.19779v2    |
+| MOTOR      | Time-to-event modeling                | Structured EHR foundation model    | https://arxiv.org/abs/2311.04238       |
 
----
+#### 3.3.2 Reasoning-Oriented Objectives
 
-### 3.3 Temporal Reasoner
+| Model       | Optimization Strategy         | Key Mechanism                               | Link                             |
+| ----------- | ----------------------------- | ------------------------------------------- | -------------------------------- |
+| QoQ-Med     | Domain-aware GRPO (DRPO)      | Hierarchical domain balancing               | https://arxiv.org/abs/2506.00711 |
+| Clinical-R1 | Clinical Objective RPO (CRPO) | Accuracy + faithfulness + comprehensiveness | https://arxiv.org/abs/2512.00601 |
+| Surgery-R1  | RL for surgical reasoning     | Multimodal coherence reward                 | https://arxiv.org/abs/2506.19469 |
+| PATHVLM-R1  | RL-driven pathology reasoning | Dual reward mechanism                       | https://arxiv.org/abs/2504.09258 |
 
-Temporal reasoning involves interpreting sequenced patient data to understand disease progression, predict events, and assess treatment responses. Data includes EHRs, ECG, EEG, and clinical time series.
+------
 
-#### 3.3.1 Implicit Temporal Reasoning via Large-Scale Pretraining
+## 4 Utilizing Multimodal Knowledge for Medical Reasoning
 
-| Model | Pretraining Data | Objective | Year | Link |
-|-------|------------------|-----------|------|------|
-| **MOTOR** | 55M patient records | Time-to-event prediction | 2023 | [arXiv:2311.04238](https://arxiv.org/abs/2311.04238) |
-| **ECGFounder** | 10M+ ECGs | Waveform pattern learning | 2025 | [NEJM AI](https://www.nature.com/articles/s41586-024-07618-3) |
-| **Neuro-GPT** | Large-scale EEG | Autoregressive modeling | 2024 | [arXiv:2402.06211](https://arxiv.org/abs/2402.06211) |
-| **EEG2TEXT** | EEG signals | Masked signal reconstruction | 2024 | [arXiv:2404.09117](https://arxiv.org/abs/2404.09117) |
-| **CET-MAE** | EEG + text | Cross-modal contrastive learning | 2024 | [ACL 2024](https://aclanthology.org/2024.acl-long.1/) |
-| **EIT-1M** | 1M EEG-Image-Text pairs | Visual-textual recognition | 2024 | [arXiv:2407.01654](https://arxiv.org/abs/2407.01654) |
+### 4.1 Motivation and Formulation of Multimodal Knowledge Utilization in Medicine
 
-#### 3.3.2 Explicit Reasoning via Programmatic Execution
+While multimodal understanding enables models to interpret heterogeneous signals, effective medical reasoning further depends on how such understanding is supported by structured external knowledge. In real-world practice, clinicians reason through active reference to prior cases, clinical guidelines, and biomedical evidence. Therefore, multimodal systems must explicitly address knowledge utilization—how medical knowledge is constructed, organized, retrieved, and integrated during inference. In medicine, knowledge is hierarchical, evidence-sensitive, and provenance-aware, requiring controlled and reliable incorporation into reasoning processes.
 
-| System | Approach | Application | Year | Link |
-|--------|----------|-------------|------|------|
-| **EHRAgent** | Python program generation | Complex clinical queries | 2024 | [arXiv:2405.05435](https://arxiv.org/abs/2405.05435) |
-| **EHRXQA** | NeuralSQL with time filters | Temporal EHR queries | 2023 | [arXiv:2310.18652](https://arxiv.org/abs/2310.18652) |
-| **GRAPHCARE** | Temporal knowledge graph | Patient trajectory | 2024 | [ICLR 2024](https://openreview.net/forum?id=graphcare) |
-| **EEG-GPT** | Tree-of-Thought framework | Neurophysiological diagnosis | 2024 | [arXiv:2308.15952](https://arxiv.org/abs/2308.15952) |
+Accordingly, recent progress can be organized into two complementary dimensions:
 
-#### 3.3.3 Agent-based and Multi-Modal Fusion
+- **Knowledge Construction**: Externalizing reasoning-relevant information into structured forms, such as prompt-embedded priors, curated case banks, and organized reasoning repositories.
+- **Knowledge Utilization Strategies**: Designing mechanisms for knowledge retrieval, selection, and iterative integration that ensure relevance, evidence consistency, and controlled influence on clinical decisions.
 
-| Model | Innovation | Modalities | Year | Link |
-|-------|------------|------------|------|------|
-| **DynamiCare** | Multi-round interactive diagnosis | Multi-modal temporal | 2025 | [arXiv:2507.01956](https://arxiv.org/abs/2507.01956) |
-| **MedTsLLM** | Patch reprogramming for time-series | Time-series + text | 2024 | [MLHC 2024](https://proceedings.mlr.press/mlhc2024) |
-| **DiagECG** | Discrete ECG tokens + LLM | ECG + text | 2025 | [arXiv:2501.01234](https://arxiv.org/abs/2501.01234) |
-| **Llemr** | ClinicalBERT compression | Long EHR sequences | 2024 | [NeurIPS 2024](https://proceedings.neurips.cc/2024) |
-| **MDAgents** | Adaptive LLM collaboration | Multi-modal | 2024 | [arXiv:2404.15155](https://arxiv.org/abs/2404.15155) |
+### 4.2 Knowledge Bank Construction
 
----
+#### 4.2.1 Prompt-Embedded Knowledge
 
-### 3.4 Pathology Reasoner
+| Model   | Knowledge Strategy                 | Link                             |
+| ------- | ---------------------------------- | -------------------------------- |
+| PathCoT | CoT prompting with self-evaluation | https://arxiv.org/abs/2507.01029 |
 
-Pathology reasoning focuses on microscopic tissue analysis with diagnostic accuracy and interpretable explanations.
+#### 4.2.2 Case-Based and Reasoning Trajectory Knowledge Banks
 
-#### 3.4.1 Datasets and Benchmarks
+| Model        | Knowledge Source           | Link                                                        |
+| ------------ | -------------------------- | ----------------------------------------------------------- |
+| SurvAgent    | Hierarchical CoT case bank | https://arxiv.org/abs/2511.16635                            |
+| CellReasoner | 380 curated CoT exemplars  | https://www.biorxiv.org/content/10.1101/2025.05.20.655112v1 |
 
-| Dataset/Benchmark | Focus | Size/Scope | Year | Link |
-|-------------------|-------|------------|------|------|
-| **PathQABench** | Multiple-choice + open-ended | Pathology capabilities | 2024 | [Nature 2024](https://www.nature.com/articles/s41586-024-07618-3) |
-| **PathMMU** | QA with detailed explanations | Expert-level benchmark | 2025 | [ECCV 2024](https://link.springer.com/chapter/10.1007/978-3-031-73242-3_4) |
+------
 
-#### 3.4.2 Training and Inference Strategies
+### 4.3 Knowledge Utilization Strategies
 
-| Model | Approach | Innovation | Year | Link |
-|-------|----------|------------|------|------|
-| **PathChat** | Vision-language instruction tuning | Step-by-step pathologist-like reasoning | 2024 | [Nature 2024](https://www.nature.com/articles/s41586-024-07618-3) |
-| **Quilt-LLaVA** | Reasoning-based prompting | Cross-region diagnostic reasoning | 2024 | [CVPR 2024](https://ieeexplore.ieee.org/document/10656199/) |
-| **VideoPath-LLaVA** | Chain-of-Thought | Video instruction tuning for pathology | 2025 | [arXiv:2505.04192](https://arxiv.org/abs/2505.04192) |
-| **PathCoT** | Multi-level CoT analysis | Cellular to organ-level reasoning | 2025 | [arXiv:2507.01029](https://arxiv.org/abs/2507.01029) |
-| **SlideSeek** | Multi-agent AI system | Autonomous WSI assessment | 2025 | [arXiv:2506.20964](https://arxiv.org/abs/2506.20964) |
+#### 4.3.1 Retrieval-Oriented Reasoning
 
-#### 3.4.3 Reinforcement Learning Approaches
+| Model     | Strategy                   | Feature                         | Link                             |
+| --------- | -------------------------- | ------------------------------- | -------------------------------- |
+| DiagR1    | Prompt argumentation       | RL-trained diagnostic reasoning | https://arxiv.org/abs/2507.18433 |
+| META-RAG  | Evidence re-ranking        | Meta-analysis inspired          | https://arxiv.org/abs/2510.24003 |
+| PICOs-RAG | Structured query rewriting | PICO-guided RAG                 | https://arxiv.org/abs/2510.23998 |
 
-| Model | RL Method | Training Pipeline | Year | Link |
-|-------|-----------|-------------------|------|------|
-| **Patho-R1** | GRPO | 3-stage: pretrain, SFT, RL | 2025 | [arXiv:2505.11404](https://arxiv.org/abs/2505.11404) |
-| **PathVLM-R1** | GRPO with dual rewards | Logic + accuracy optimization | 2025 | [arXiv:2504.09258](https://arxiv.org/abs/2504.09258) |
-| **SmartPath-R1** | Task-aware RL + GRPO | Multi-level adaptation (ROI/WSI) | 2025 | [arXiv:2507.17303](https://arxiv.org/abs/2507.17303) |
-| **DiagR1** | GRPO | Pathology report generation | 2025 | [arXiv:2507.18433](https://arxiv.org/abs/2507.18433) |
-| **Bilateral RL Framework** | Dynamic token allocation | Adaptive computational efficiency | 2025 | [arXiv:2505.15687](https://arxiv.org/abs/2505.15687) |
+#### 4.3.2 Iterative Retrieval and Reasoning
 
----
+| Model                              | Mechanism                      | Highlight                      | Link                             |
+| ---------------------------------- | ------------------------------ | ------------------------------ | -------------------------------- |
+| Proactive Reasoning-with-Retrieval | Confidence-driven re-retrieval | Joint reasoning-retrieval loop | https://arxiv.org/abs/2510.18303 |
+| TxGemma                            | Agentic ReAct framework        | Thought–action interleaving    | https://arxiv.org/abs/2504.06196 |
 
-### 3.5 Genomics Reasoner
+------
 
-Genomic reasoning involves interpreting biological sequences and high-dimensional omics data for biological label prediction and scientific reasoning.
+## 5 Analyzing Multimodal Reasoning with Agentic Frameworks
 
-#### 3.5.1 Biomedical Classification
+### 5.1 Motivation and Formulation of Agentic Multimodal Analysis
 
-| Model/Benchmark | Task | Approach | Year | Link |
-|-----------------|------|----------|------|------|
-| **SOAR** | Cell type annotation | Zero-shot CoT prompting | 2024 | [arXiv:2412.02915](https://arxiv.org/abs/2412.02915) |
-| **CellReasoner** | Cell type annotation | 3-stage: scaffold, knowledge, fusion | 2025 | [bioRxiv](https://www.biorxiv.org/content/10.1101/2025.05.20.655112v1) |
-| **DeepSeek-R1 (genomics)** | Cell annotation | RL-based zero-shot reasoning | 2025 | [bioRxiv](https://www.biorxiv.org/content/10.1101/2025.06.17.659642v1) |
-| **BIOREASON** | Variant effect prediction | DNA foundation model + LLM + GRPO | 2025 | [arXiv:2505.23579](https://arxiv.org/abs/2505.23579) |
+While knowledge utilization equips models with access to external evidence, complex clinical reasoning often requires higher-level organization—explicit analysis, planning, and adaptive control over multi-step decision processes. In practice, diagnosis and treatment planning unfold as structured workflows involving hypothesis generation, evidence revision, and iterative refinement. This motivates agentic multimodal analysis, which formulates reasoning as goal-directed and dynamically organized analytical processes rather than isolated inference steps.
 
-#### 3.5.2 Scientific Reasoning
+Accordingly, recent developments can be summarized along two complementary dimensions:
 
-| Dataset/Model | Focus | Contribution | Year | Link |
-|---------------|-------|--------------|------|------|
-| **Genome-Bench** | Real-world expert discussions | Scientific reasoning benchmark | 2025 | [bioRxiv](https://www.biorxiv.org/content/10.1101/2025.06.02.657538v1) |
-| **BioGPT (genomics)** | Personalized genomic medicine | Rare disease diagnosis | 2025 | [MJAIH](https://journals.mesopotamian.press/index.php/MJAIH/article/view/850) |
-| **TxGemma** | Therapeutics | Efficient and agentic LLMs | 2025 | [arXiv:2504.06196](https://arxiv.org/abs/2504.06196) |
-| **GeneAgent** | Gene-set analysis | Self-verification language agent | 2025 | [Nature Methods](https://www.nature.com/articles/s41592-025-02748-6) |
-| **Gene-R1** | Gene set analysis | Data-augmented lightweight LLMs | 2025 | [arXiv:2509.10575](https://arxiv.org/abs/2509.10575) |
-| **Thought Graph** | Biological reasoning | Generating thought process | 2024 | [WWW 2024](https://dl.acm.org/doi/10.1145/3589335.3651572) |
+- **Analytical Task Decomposition and Planning**: Structuring reasoning into multi-step workflows that decompose clinical problems, manage hypotheses, and coordinate long-horizon decision processes.
+- **Action-Oriented Reasoning and Interaction**: Modeling reasoning as sequences of deliberate actions (e.g., retrieval, evaluation, tool invocation, revision) within an interaction loop between the reasoning core and external resources, enabling adaptive and transparent decision-making.
 
----
+### 5.2 Agentic Analysis Construction
 
-### 3.6 Surgical Reasoner
+#### 5.2.1 Evidence and Analytical Memory
 
-Surgical reasoning analyzes surgical videos for procedure recognition, error detection, and quality assessment.
+| Model     | Mechanism                               | Link                                               |
+| --------- | --------------------------------------- | -------------------------------------------------- |
+| SurvAgent | CoT-enhanced case memory                | https://arxiv.org/abs/2511.16635                   |
+| GeneAgent | Generation–verification–refinement loop | https://www.nature.com/articles/s41592-025-02748-6 |
 
-| System | Focus | Innovation | Year | Link |
-|--------|-------|------------|------|------|
-| **CARES** | Error detection | Collaborative agentic reasoning | 2025 | [arXiv:2508.08764](https://arxiv.org/abs/2508.08764) |
-| **EndoChat** | Endoscopic surgery | Grounded multimodal LLM | 2025 | [arXiv:2501.11347](https://arxiv.org/abs/2501.11347) |
-| **Surgery-R1** | Surgical-VQLA | RL for surgical reasoning | 2025 | [arXiv:2506.19469](https://arxiv.org/abs/2506.19469) |
-| **SurgRAW** | Surgical intelligence | Multi-agent workflow with CoT | 2025 | [arXiv:2503.10265](https://arxiv.org/abs/2503.10265) |
-| **SurgVidLM** | Multi-grained understanding | Video + language model | 2025 | [arXiv:2506.17873](https://arxiv.org/abs/2506.17873) |
-| **SurgVLM** | Systematic evaluation | Large VLM + benchmark | 2025 | [arXiv:2506.02555](https://arxiv.org/abs/2506.02555) |
+#### 5.2.2 Structured Reasoning Workflows
 
----
+| Model      | Framework                        | Link                                                         |
+| ---------- | -------------------------------- | ------------------------------------------------------------ |
+| Magic      | Debate-activated graph reasoning | https://www.sciencedirect.com/science/article/pii/S1566253525006293 |
+| SurgRAW    | CoT-driven multi-agent workflow  | https://arxiv.org/abs/2503.10265                             |
+| LVAgent    | Multi-round agent collaboration  | https://arxiv.org/abs/2503.10200                             |
+| VideoAgent | Iterative frame exploration      | https://arxiv.org/abs/2403.10517                             |
+| LLM-SAP    | Situational awareness planning   | https://arxiv.org/abs/2312.16127                             |
+
+------
+
+### 5.3 Agentic Analysis Strategy
+
+#### 5.3.1 Evidence Utilization and Exploration
+
+| Model      | Strategy                | Link                             |
+| ---------- | ----------------------- | -------------------------------- |
+| SurvAgent  | Case-based exploration  | https://arxiv.org/abs/2511.16635 |
+| VideoAgent | Iterative visual search | https://arxiv.org/abs/2403.10517 |
+
+#### 5.3.2 Reasoning Control and Multi-Agent Coordination
+
+| Model                      | Coordination Strategy                     | Link                             |
+| -------------------------- | ----------------------------------------- | -------------------------------- |
+| SlideSeek                  | Plan → Region analysis → Grounded summary | https://arxiv.org/abs/2506.20964 |
+| TxGemma                    | ReAct tool-use interleaving               | https://arxiv.org/abs/2504.06196 |
+| MDAgents                   | Adaptive collaboration routing            | https://arxiv.org/abs/2404.15155 |
+| Inquire-Interact-Integrate | Self-evolving zero-shot collaboration     | https://arxiv.org/abs/2405.11640 |
+| Evolving Diagnostic Agents | Virtual clinical environment adaptation   | https://arxiv.org/abs/2510.24654 |
 
 ## 📊 Benchmarking Medical Reasoning
 
-### 4.1 Benchmark Categories
+### Benchmark Categories
 
 Medical reasoning benchmarks span modalities from text-only exams to multimodal clinical toolkits. Below are the key datasets cited in this section (see `paper/sec/sec5-Benchmarking.tex` for the complete table).
 
