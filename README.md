@@ -509,7 +509,7 @@ Medical reasoning benchmarks span modalities from text-only exams to multimodal 
 
 ---
 
-### 4.2 Evaluation Metrics
+### Evaluation Metrics
 
 #### Accuracy-Based Metrics
 
@@ -534,7 +534,7 @@ Medical reasoning benchmarks span modalities from text-only exams to multimodal 
 
 ---
 
-### 4.3 Performance Analysis
+### Performance Analysis
 
 #### Leaderboard: MedQA-USMLE
 
