@@ -584,7 +584,9 @@ We welcome contributions to this repository! Please see our [CONTRIBUTING.md](CO
 
 ## ⭐ Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=QiyaoZheng7/try&type=Date)](https://star-history.com/#QiyaoZheng7/try&Date)
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=ZJUMAI/Multimodal-Medical-Reasoning&type=date&legend=top-left)](https://www.star-history.com/#ZJUMAI/Multimodal-Medical-Reasoning&type=date&legend=top-left)
 
 ---
 
