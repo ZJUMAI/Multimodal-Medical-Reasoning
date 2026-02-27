@@ -253,16 +253,21 @@ Accordingly, recent progress can be viewed along two complementary dimensions:
 
 #### 3.2.1 Reasoning-Oriented Datasets
 
-| Paper                                                        | Key Idea                                                     | Data Scale / Feature                    | Link                                               |
-| ------------------------------------------------------------ | ------------------------------------------------------------ | --------------------------------------- | -------------------------------------------------- |
-| Neural-MedBench                                              | Beyond classification accuracy; evaluates depth and reasoning complexity | Deep reasoning benchmark                | https://arxiv.org/abs/2509.22258                   |
-| Evaluating Reasoning Faithfulness via Multimodal Perturbations | Tests faithfulness using image modifications                 | Perturbation-based evaluation           | https://arxiv.org/abs/2510.11196                   |
-| Patho-R1                                                     | Multimodal RL-based pathology expert reasoner                | 3.5M image-text pairs, 500K SFT samples | https://arxiv.org/abs/2505.11404                   |
-| MedVLThinker                                                 | Baselines for multimodal medical reasoning                   | Data filtered by reasoning difficulty   | https://arxiv.org/abs/2508.02669                   |
-| ECG Foundation Model                                         | Large-scale ECG pretraining                                  | 10M+ ECGs, 150 labels                   | https://www.nature.com/articles/s41586-024-07618-3 |
-| M3D                                                          | 3D multimodal medical dataset                                | 120K image-text + 662K instructions     | https://arxiv.org/abs/2404.00578                   |
-| Multimodal Generative AI Copilot for Pathology               | Large instruction corpus                                     | 456K instructions, 999K QA turns        | https://www.nature.com/articles/s41586-024-07618-3 |
-| DermoGPT                                                     | Morphology-grounded dermatology reasoning                    | 211K images, 772K trajectories          |                                                    |
+| Paper                                                        | Key Idea                                                     | Data Scale / Feature                                         | Link                                               |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | -------------------------------------------------- |
+| Neural-MedBench                                              | Beyond classification accuracy; evaluates depth and reasoning complexity | Deep reasoning benchmark                                     | https://arxiv.org/abs/2509.22258                   |
+| Evaluating Reasoning Faithfulness via Multimodal Perturbations | Tests faithfulness using image modifications                 | Perturbation-based evaluation                                | https://arxiv.org/abs/2510.11196                   |
+| Patho-R1                                                     | Multimodal RL-based pathology expert reasoner                | 3.5M image-text pairs, 500K SFT samples                      | https://arxiv.org/abs/2505.11404                   |
+| MedVLThinker                                                 | Baselines for multimodal medical reasoning                   | Data filtered by reasoning difficulty                        | https://arxiv.org/abs/2508.02669                   |
+| ECG Foundation Model                                         | Large-scale ECG pretraining                                  | 10M+ ECGs, 150 labels                                        | https://www.nature.com/articles/s41586-024-07618-3 |
+| M3D                                                          | 3D multimodal medical dataset                                | 120K image-text + 662K instructions                          | https://arxiv.org/abs/2404.00578                   |
+| Multimodal Generative AI Copilot for Pathology               | Large instruction corpus                                     | 456K instructions, 999K QA turns                             | https://www.nature.com/articles/s41586-024-07618-3 |
+| DermoGPT                                                     | Morphology-grounded dermatology reasoning                    | 211K images, 772K trajectories                               | https://arxiv.org/abs/2601.01868                   |
+| MedTrinity-25M                                               | multigranular annotations                                    | image regions, clinical concepts, and report-level description | https://arxiv.org/abs/2408.02900                   |
+
+
+
+
 
 #### 3.2.2 Reasoning-Aware Curation Strategies
 
@@ -293,12 +298,13 @@ Accordingly, recent progress can be viewed along two complementary dimensions:
 
 #### 3.3.2 Reasoning-Oriented Objectives
 
-| Model       | Optimization Strategy         | Key Mechanism                               | Link                             |
-| ----------- | ----------------------------- | ------------------------------------------- | -------------------------------- |
-| QoQ-Med     | Domain-aware GRPO (DRPO)      | Hierarchical domain balancing               | https://arxiv.org/abs/2506.00711 |
-| Clinical-R1 | Clinical Objective RPO (CRPO) | Accuracy + faithfulness + comprehensiveness | https://arxiv.org/abs/2512.00601 |
-| Surgery-R1  | RL for surgical reasoning     | Multimodal coherence reward                 | https://arxiv.org/abs/2506.19469 |
-| PATHVLM-R1  | RL-driven pathology reasoning | Dual reward mechanism                       | https://arxiv.org/abs/2504.09258 |
+| Model       | Optimization Strategy            | Key Mechanism                                                | Link                             |
+| ----------- | -------------------------------- | ------------------------------------------------------------ | -------------------------------- |
+| QoQ-Med     | Domain-aware GRPO (DRPO)         | Hierarchical domain balancing                                | https://arxiv.org/abs/2506.00711 |
+| Clinical-R1 | Clinical Objective RPO (CRPO)    | Accuracy + faithfulness + comprehensiveness                  | https://arxiv.org/abs/2512.00601 |
+| Surgery-R1  | RL for surgical reasoning        | Multimodal coherence reward                                  | https://arxiv.org/abs/2506.19469 |
+| PATHVLM-R1  | RL-driven pathology reasoning    | Dual reward mechanism                                        | https://arxiv.org/abs/2504.09258 |
+| MedE²       | two-stage post-training pipeline | elicits reasoning behavior and enhances multimodal reasoning | https://arxiv.org/abs/2505.23118 |
 
 ------
 
@@ -332,7 +338,7 @@ Accordingly, recent progress can be organized into two complementary dimensions:
 
 ### 4.3 Knowledge Utilization Strategies
 
-#### 4.3.1 Retrieval-Oriented Reasoning
+#### 4.3.1 Retrieval-Oriented Reasoning Strategies
 
 | Model     | Strategy                   | Feature                         | Link                             |
 | --------- | -------------------------- | ------------------------------- | -------------------------------- |
@@ -342,10 +348,10 @@ Accordingly, recent progress can be organized into two complementary dimensions:
 
 #### 4.3.2 Iterative Retrieval and Reasoning
 
-| Model                              | Mechanism                      | Highlight                      | Link                             |
-| ---------------------------------- | ------------------------------ | ------------------------------ | -------------------------------- |
-| Proactive Reasoning-with-Retrieval | Confidence-driven re-retrieval | Joint reasoning-retrieval loop | https://arxiv.org/abs/2510.18303 |
-| TxGemma                            | Agentic ReAct framework        | Thought–action interleaving    | https://arxiv.org/abs/2504.06196 |
+| Model    | Mechanism                      | Highlight                      | Link                             |
+| -------- | ------------------------------ | ------------------------------ | -------------------------------- |
+| Med- RwR | Confidence-driven re-retrieval | Joint reasoning-retrieval loop | https://arxiv.org/abs/2510.18303 |
+| TxGemma  | Agentic ReAct framework        | Thought–action interleaving    | https://arxiv.org/abs/2504.06196 |
 
 ------
 
@@ -364,10 +370,11 @@ Accordingly, recent developments can be summarized along two complementary dimen
 
 #### 5.2.1 Evidence and Analytical Memory
 
-| Model     | Mechanism                               | Link                                               |
-| --------- | --------------------------------------- | -------------------------------------------------- |
-| SurvAgent | CoT-enhanced case memory                | https://arxiv.org/abs/2511.16635                   |
-| GeneAgent | Generation–verification–refinement loop | https://www.nature.com/articles/s41592-025-02748-6 |
+| Model        | Mechanism                                      | Link                                               |
+| ------------ | ---------------------------------------------- | -------------------------------------------------- |
+| SurvAgent    | CoT-enhanced case memory                       | https://arxiv.org/abs/2511.16635                   |
+| GeneAgent    | Generation–verification–refinement loop        | https://www.nature.com/articles/s41592-025-02748-6 |
+| MedAgent-Pro | evidence-based multi-modal diagnostic workflow | https://arxiv.org/abs/2503.18968                   |
 
 #### 5.2.2 Structured Reasoning Workflows
 
@@ -385,20 +392,23 @@ Accordingly, recent developments can be summarized along two complementary dimen
 
 #### 5.3.1 Evidence Utilization and Exploration
 
-| Model      | Strategy                | Link                             |
-| ---------- | ----------------------- | -------------------------------- |
-| SurvAgent  | Case-based exploration  | https://arxiv.org/abs/2511.16635 |
-| VideoAgent | Iterative visual search | https://arxiv.org/abs/2403.10517 |
+| Model         | Strategy                       | Link                             |
+| ------------- | ------------------------------ | -------------------------------- |
+| SurvAgent     | Case-based exploration         | https://arxiv.org/abs/2511.16635 |
+| VideoAgent    | Iterative visual search        | https://arxiv.org/abs/2403.10517 |
+| MMedExpert-RL | domain-specific adaptation     | https://arxiv.org/abs/2601.10949 |
+| AgentsEval    | collaborative agents to assess | https://arxiv.org/abs/2601.16685 |
 
 #### 5.3.2 Reasoning Control and Multi-Agent Coordination
 
-| Model                      | Coordination Strategy                     | Link                             |
-| -------------------------- | ----------------------------------------- | -------------------------------- |
-| SlideSeek                  | Plan → Region analysis → Grounded summary | https://arxiv.org/abs/2506.20964 |
-| TxGemma                    | ReAct tool-use interleaving               | https://arxiv.org/abs/2504.06196 |
-| MDAgents                   | Adaptive collaboration routing            | https://arxiv.org/abs/2404.15155 |
-| Inquire-Interact-Integrate | Self-evolving zero-shot collaboration     | https://arxiv.org/abs/2405.11640 |
-| Evolving Diagnostic Agents | Virtual clinical environment adaptation   | https://arxiv.org/abs/2510.24654 |
+| Model                      | Coordination Strategy                           | Link                             |
+| -------------------------- | ----------------------------------------------- | -------------------------------- |
+| SlideSeek                  | Plan → Region analysis → Grounded summary       | https://arxiv.org/abs/2506.20964 |
+| TxGemma                    | ReAct tool-use interleaving                     | https://arxiv.org/abs/2504.06196 |
+| MDAgents                   | Adaptive collaboration routing                  | https://arxiv.org/abs/2404.15155 |
+| Inquire-Interact-Integrate | Self-evolving zero-shot collaboration           | https://arxiv.org/abs/2405.11640 |
+| Evolving Diagnostic Agents | Virtual clinical environment adaptation         | https://arxiv.org/abs/2510.24654 |
+| Dr. Assistant              | leveraging structured diagnostic reasoning data | https://arxiv.org/abs/2601.13690 |
 
 ## 📊 Benchmarking Medical Reasoning
 
