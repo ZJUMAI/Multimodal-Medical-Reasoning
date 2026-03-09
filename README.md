@@ -8,7 +8,7 @@
 **📝 Paper source: [`paper/`](paper/) | ✒️ [Citation](#-citation)**
 
 > **Towards Autonomous Decision-Making: A Survey of Multimodal Medical Reasoning**  
-> *Haochao Ying*  
+> *Lujie Zheng*  
 > 
 > A survey of multimodal medical reasoning models, taxonomies, benchmarks, and resources for increasingly autonomous, evidence-grounded clinical decision-making.
 
@@ -102,8 +102,9 @@ If you find this repository useful, please consider giving us a ⭐ star to stay
 ## Overview
 
 <p align="center">
-  <img src="images/overview.png" alt="overview" width="900"/>
+  <img src="images/cartoon.png" alt="overview" width="900"/>
 </p>
+
 
 Medical reasoning has long been a central topic in artificial intelligence for medicine, referring to the cognitive processes underlying diagnostic and therapeutic decision-making as well as the understanding of disease pathology. This survey systematically analyzes medical reasoning in the age of multimodal foundation models (MFMs), covering both large language models (LLMs) and multimodal reasoning across diverse medical domains.
 
@@ -129,13 +130,14 @@ Recent advances in large language models (LLMs) and multimodal foundation models
 
 ### Structure of the Survey
 
-We survey over 200 publications, organizing the survey as follows:
+We survey over 150 publications, organizing the survey as follows:
 
 1. Section 2 reviews reasoning methodologies, including training-free, training-based, and extrinsic approaches.
 2. Section 3 discusses reasoning-oriented multimodal understanding from data curation and modeling strategy perspectives.
 3. Section 4 summarizes knowledge bank construction and retrieval-based strategies for multimodal knowledge utilization.
 4. Section 5 reviews agentic frameworks that enable long-horizon, uncertainty-aware multimodal reasoning workflows.
 5. Section 6 summarizes benchmarks and evaluation protocols, emphasizing reasoning quality, interpretability, and process-level automation.
+6. Section 7 outlines open challenges and future directions for developing trustworthy, adaptive, and clinically aligned multimodal medical reasoning agents.
 
 ### Contribution of the Survey
 
@@ -159,14 +161,15 @@ Training-free strategies enhance medical reasoning without requiring model fine-
 
 Chain-of-Thought prompting ("think step-by-step") strengthens problem-solving performance in medical applications.
 
-| Paper/Model | Venue/Source | Year | Performance | Paper |
-|-------------|--------------|------|-------------|-------|
-| **ChatGPT on USMLE** | JMIR Med Educ | 2023 | 60.2% MedQA-USMLE, 62.7% MedMCQA, 78.2% PubMedQA | [Link](https://medinform.jmir.org/2023/1/e45312) |
-| **GPT-4 Medical Challenge** | arXiv | 2023 | Near passing on USMLE | [arXiv:2303.13375](https://arxiv.org/abs/2303.13375) |
-| **LLMs Medical Reasoning** | JAMIA | 2024 | Various benchmarks | [Link](https://academic.oup.com/jamia) |
-| **Can LLMs reason about medical questions?** | Patterns | 2024 | Various benchmarks | Patterns (2024) |
+| Paper/Model | Performance | Year | Link |
+|-------------|-------------|------|------|
+| ChatGPT on USMLE | 60.2% MedQA-USMLE, 62.7% MedMCQA, 78.2% PubMedQA | 2023 | [Link](https://medinform.jmir.org/2023/1/e45312) |
+| GPT-4 Medical Challenge | Near passing on USMLE | 2023 | [arXiv:2303.13375](https://arxiv.org/abs/2303.13375) |
+| LLMs Medical Reasoning | Various benchmarks | 2024 | [Link](https://academic.oup.com/jamia) |
+| Can LLMs reason about medical questions? | Various benchmarks | 2024 | [Link](https://www.cell.com/patterns/fulltext/S2666-3899(24)00042-4) |
 
 **Key Insights:**
+
 - ChatGPT achieved passing-level performance on USMLE through few-shot self-consistent CoT prompting
 - GPT-4 demonstrated capabilities on complex medical challenge problems
 - Performance highly sensitive to prompt formulation and structure design
@@ -176,12 +179,12 @@ Chain-of-Thought prompting ("think step-by-step") strengthens problem-solving pe
 
 Reflection mechanisms enable models to iteratively improve reasoning through self-evaluation.
 
-| Paper | Venue | Year | Approach |
-|-------|-------|------|----------|
-| [Med-REFL](https://arxiv.org/abs/2506.13793) | arXiv | 2025 | Adds fine-grained self-reflection loops to filter low-confidence reasoning steps. |
-| [LVMed-R2](https://arxiv.org/abs/2504.02885) | arXiv | 2025 | Forces multimodal report generators to verify evidence tokens before final answers. |
-| [PathCoT](https://arxiv.org/abs/2507.01029) | arXiv | 2025 | Couples CoT prompting with self-evaluation across cell→tissue→organ levels. |
-| [Agentic-Tx (TxGemma)](https://arxiv.org/abs/2504.06196) | arXiv | 2025 | Tool-driven agent that reflects on intermediate outputs for drug development reasoning. |
+| Paper | Approach | Year | Link |
+|-------|----------|------|------|
+| Med-REFL | Adds fine-grained self-reflection loops to filter low-confidence reasoning steps. | 2025 | [Link](https://arxiv.org/abs/2506.13793) |
+| LVMed-R2 | Forces multimodal report generators to verify evidence tokens before final answers. | 2025 | [Link](https://arxiv.org/abs/2504.02885) |
+| PathCoT | Couples CoT prompting with self-evaluation across cell→tissue→organ levels. | 2025 | [Link](https://arxiv.org/abs/2507.01029) |
+| Agentic-Tx (TxGemma) | Tool-driven agent that reflects on intermediate outputs for drug development reasoning. | 2025 | [Link](https://arxiv.org/abs/2504.06196) |
 
 ---
 
@@ -191,23 +194,23 @@ Reflection mechanisms enable models to iteratively improve reasoning through sel
 
 Supervised fine-tuning adapts foundation models to medical reasoning tasks through curated instruction datasets.
 
-| Model/Paper | Approach | Domain | Year |
-|-------------|----------|--------|------|
-| [FineMedLM-o1](https://arxiv.org/abs/2501.09213) | SFT + test-time training | General medical QA | 2025 |
-| [PathChat](https://www.nature.com/articles/s41586-024-07618-3) | Visual encoder + instruction tuning | Pathology whole-slide copilot | 2024 |
-| [BioGPT](https://journals.mesopotamian.press/index.php/MJAIH/article/view/850) | Genomic + clinical fusion SFT | Rare disease & precision medicine | 2025 |
-| [MedReason-8B](https://github.com/UCSC-VLAA/MedReason) | KG-grounded instruction tuning | Clinical QA with reasoning chains | 2025 |
+| Model/Paper | Approach | Domain | Year | Link |
+|-------------|----------|--------|------|------|
+| FineMedLM-o1 | SFT + test-time training | General medical QA | 2025 | [Link](https://arxiv.org/abs/2501.09213) |
+| PathChat | Visual encoder + instruction tuning | Pathology whole-slide copilot | 2024 | [Link](https://www.nature.com/articles/s41586-024-07618-3) |
+| BioGPT | Genomic + clinical fusion SFT | Rare disease & precision medicine | 2025 | [Link](https://journals.mesopotamian.press/index.php/MJAIH/article/view/850) |
+| MedReason-8B | KG-grounded instruction tuning | Clinical QA with reasoning chains | 2025 | [Link](https://github.com/UCSC-VLAA/MedReason) |
 
 #### 2.2.2 Reinforcement Learning for Medical Reasoning
 
 RL-based approaches optimize reasoning policies through reward-driven training.
 
-| Model/Paper | RL Method | Application | Year |
-|-------------|-----------|-------------|------|
-| [Med-R1](https://arxiv.org/abs/2503.13939) | GRPO + verifiable rewards | Radiology & Med-VQA reasoning | 2025 |
-| [GMAI-VL-R1](https://arxiv.org/abs/2504.01886) | RL with clinical consistency rewards | Multimodal diagnosis QA | 2025 |
-| [PathVLM-R1](https://arxiv.org/abs/2504.09258) | Dual-reward RL (logic + answer) | Pathology visual-language tasks | 2025 |
-| [BioReason](https://arxiv.org/abs/2505.23579) | GRPO over DNA-LLM outputs | Genomic variant reasoning | 2025 |
+| Model/Paper | RL Method | Application | Year | Link |
+|-------------|-----------|-------------|------|------|
+| Med-R1 | GRPO + verifiable rewards | Radiology & Med-VQA reasoning | 2025 | [Link](https://arxiv.org/abs/2503.13939) |
+| GMAI-VL-R1 | RL with clinical consistency rewards | Multimodal diagnosis QA | 2025 | [Link](https://arxiv.org/abs/2504.01886) |
+| PathVLM-R1 | Dual-reward RL (logic + answer) | Pathology visual-language tasks | 2025 | [Link](https://arxiv.org/abs/2504.09258) |
+| BioReason | GRPO over DNA-LLM outputs | Genomic variant reasoning | 2025 | [Link](https://arxiv.org/abs/2505.23579) |
 
 ---
 
@@ -217,22 +220,22 @@ RL-based approaches optimize reasoning policies through reward-driven training.
 
 Integrating external medical knowledge to enhance reasoning capabilities.
 
-| Paper | Knowledge Source | Method | Year |
-|-------|------------------|--------|------|
-| [medIKAL](https://arxiv.org/abs/2406.14326) | EMR + medical KG | LLM agent that consults KG assistants for diagnosis | 2024 |
-| [Leveraging Medical KGs in LLMs](https://ai.jmir.org/2025/1/e58670) | Clinical KG features | Injects KG-derived embeddings during fine-tuning to boost accuracy | 2025 |
-| [LLM-powered KG for Mental Health](https://www.nature.com/articles/s41467-025-07526-3) | Multisource patient data | Uses LLMs to build & reason over new knowledge graphs | 2025 |
+| Paper | Knowledge Source | Method | Year | Link |
+|-------|------------------|--------|------|------|
+| medIKAL | EMR + medical KG | LLM agent that consults KG assistants for diagnosis | 2024 | [Link](https://arxiv.org/abs/2406.14326) |
+| Leveraging Medical KGs in LLMs | Clinical KG features | Injects KG-derived embeddings during fine-tuning to boost accuracy | 2025 | [Link](https://ai.jmir.org/2025/1/e58670) |
+| LLM-powered KG for Mental Health | Multisource patient data | Uses LLMs to build & reason over new knowledge graphs | 2025 | [Link](https://www.nature.com/articles/s41467-025-07526-3) |
 
 #### 2.3.2 Agentic Reasoning System
 
 Multi-agent systems that simulate clinical workflows and collaborative decision-making.
 
-| System | Architecture | Application | Year |
-|--------|--------------|-------------|------|
-| [MDAgents](https://github.com/mitmedialab/MDAgents) | Adaptive multi-agent collaboration | Medical decision-making | 2024 |
-| [DynamiCare](https://arxiv.org/abs/2507.01956) | Memory-augmented multi-round agent team | Interactive diagnosis over temporal visits | 2025 |
-| [EHRAgent](https://arxiv.org/abs/2401.07128) | Code-executing agent with program-of-thought | Complex tabular EHR reasoning | 2024 |
-| [SlideSeek](https://arxiv.org/abs/2506.20964) | Multi-agent pathology copilot | Evidence-grounded WSI diagnosis workflow | 2025 |
+| System | Architecture | Application | Year | Link |
+|--------|--------------|-------------|------|------|
+| MDAgents | Adaptive multi-agent collaboration | Medical decision-making | 2024 | [Link](https://github.com/mitmedialab/MDAgents) |
+| DynamiCare | Memory-augmented multi-round agent team | Interactive diagnosis over temporal visits | 2025 | [Link](https://arxiv.org/abs/2507.01956) |
+| EHRAgent | Code-executing agent with program-of-thought | Complex tabular EHR reasoning | 2024 | [Link](https://arxiv.org/abs/2401.07128) |
+| SlideSeek | Multi-agent pathology copilot | Evidence-grounded WSI diagnosis workflow | 2025 | [Link](https://arxiv.org/abs/2506.20964) |
 
 ---
 
@@ -253,17 +256,17 @@ Accordingly, recent progress can be viewed along two complementary dimensions:
 
 #### 3.2.1 Reasoning-Oriented Datasets
 
-| Paper                                                        | Key Idea                                                     | Data Scale / Feature                                         | Link                                               |
-| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | -------------------------------------------------- |
-| Neural-MedBench                                              | Beyond classification accuracy; evaluates depth and reasoning complexity | Deep reasoning benchmark                                     | https://arxiv.org/abs/2509.22258                   |
-| Evaluating Reasoning Faithfulness via Multimodal Perturbations | Tests faithfulness using image modifications                 | Perturbation-based evaluation                                | https://arxiv.org/abs/2510.11196                   |
-| Patho-R1                                                     | Multimodal RL-based pathology expert reasoner                | 3.5M image-text pairs, 500K SFT samples                      | https://arxiv.org/abs/2505.11404                   |
-| MedVLThinker                                                 | Baselines for multimodal medical reasoning                   | Data filtered by reasoning difficulty                        | https://arxiv.org/abs/2508.02669                   |
-| ECG Foundation Model                                         | Large-scale ECG pretraining                                  | 10M+ ECGs, 150 labels                                        | https://www.nature.com/articles/s41586-024-07618-3 |
-| M3D                                                          | 3D multimodal medical dataset                                | 120K image-text + 662K instructions                          | https://arxiv.org/abs/2404.00578                   |
-| Multimodal Generative AI Copilot for Pathology               | Large instruction corpus                                     | 456K instructions, 999K QA turns                             | https://www.nature.com/articles/s41586-024-07618-3 |
-| DermoGPT                                                     | Morphology-grounded dermatology reasoning                    | 211K images, 772K trajectories                               | https://arxiv.org/abs/2601.01868                   |
-| MedTrinity-25M                                               | multigranular annotations                                    | image regions, clinical concepts, and report-level description | https://arxiv.org/abs/2408.02900                   |
+| Paper | Key Idea | Data Scale / Feature | Year | Link |
+|-------|---------|----------------------|------|------|
+| Neural-MedBench | Beyond classification accuracy; evaluates depth and reasoning complexity | Deep reasoning benchmark | 2025 | [Link](https://arxiv.org/abs/2509.22258) |
+| Evaluating Reasoning Faithfulness via Multimodal Perturbations | Tests faithfulness using image modifications | Perturbation-based evaluation | 2025 | [Link](https://arxiv.org/abs/2510.11196) |
+| Patho-R1 | Multimodal RL-based pathology expert reasoner | 3.5M image-text pairs, 500K SFT samples | 2025 | [Link](https://arxiv.org/abs/2505.11404) |
+| MedVLThinker | Baselines for multimodal medical reasoning | Data filtered by reasoning difficulty | 2025 | [Link](https://arxiv.org/abs/2508.02669) |
+| ECG Foundation Model | Large-scale ECG pretraining | 10M+ ECGs, 150 labels | 2024 | [Link](https://www.nature.com/articles/s41586-024-07618-3) |
+| M3D | 3D multimodal medical dataset | 120K image-text + 662K instructions | 2024 | [Link](https://arxiv.org/abs/2404.00578) |
+| Multimodal Generative AI Copilot for Pathology | Large instruction corpus | 456K instructions, 999K QA turns | 2024 | [Link](https://www.nature.com/articles/s41586-024-07618-3) |
+| DermoGPT | Morphology-grounded dermatology reasoning | 211K images, 772K trajectories | 2026 | [Link](https://arxiv.org/abs/2601.01868) |
+| MedTrinity-25M | multigranular annotations | image regions, clinical concepts, and report-level description | 2024 | [Link](https://arxiv.org/abs/2408.02900) |
 
 
 
@@ -271,14 +274,14 @@ Accordingly, recent progress can be viewed along two complementary dimensions:
 
 #### 3.2.2 Reasoning-Aware Curation Strategies
 
-| Paper           | Strategy                            | Core Contribution                          | Link                                           |
-| --------------- | ----------------------------------- | ------------------------------------------ | ---------------------------------------------- |
-| MedReason-R1    | Reinforcement learning + local zoom | Local region refinement for CT diagnosis   | https://arxiv.org/abs/2510.19626               |
-| BioReason       | Variant-network–guided QA synthesis | Multi-step reasoning via LLM distillation  | https://arxiv.org/abs/2505.23579               |
-| GMAI-VL-R1      | RL-based reasoning data synthesis   | Step-by-step data via rejection sampling   | https://arxiv.org/abs/2504.01886               |
-| ReXGroundingCT  | Three-stage grounding pipeline      | Free-text to segmentation masks            | https://arxiv.org/abs/2507.22030               |
-| Quilt-LLaVA     | Cursor-tracked narrative extraction | Spatial grounding from educational videos  | https://ieeexplore.ieee.org/document/10656199/ |
-| VideoPath-LLaVA | Video instruction tuning            | Diagnostic reasoning from pathology videos | https://arxiv.org/abs/2505.04192               |
+| Paper | Strategy | Core Contribution | Year | Link |
+|-------|----------|-------------------|------|------|
+| MedReason-R1 | Reinforcement learning + local zoom | Local region refinement for CT diagnosis | 2025 | [Link](https://arxiv.org/abs/2510.19626) |
+| BioReason | Variant-network–guided QA synthesis | Multi-step reasoning via LLM distillation | 2025 | [Link](https://arxiv.org/abs/2505.23579) |
+| GMAI-VL-R1 | RL-based reasoning data synthesis | Step-by-step data via rejection sampling | 2025 | [Link](https://arxiv.org/abs/2504.01886) |
+| ReXGroundingCT | Three-stage grounding pipeline | Free-text to segmentation masks | 2025 | [Link](https://arxiv.org/abs/2507.22030) |
+| Quilt-LLaVA | Cursor-tracked narrative extraction | Spatial grounding from educational videos | 2024 | [Link](https://ieeexplore.ieee.org/document/10656199/) |
+| VideoPath-LLaVA | Video instruction tuning | Diagnostic reasoning from pathology videos | 2025 | [Link](https://arxiv.org/abs/2505.04192) |
 
 ------
 
@@ -286,25 +289,25 @@ Accordingly, recent progress can be viewed along two complementary dimensions:
 
 #### 3.3.1 Modality-Aware Architectures
 
-| Model      | Design Focus                          | Highlight                          | Link                                   |
-| ---------- | ------------------------------------- | ---------------------------------- | -------------------------------------- |
-| FLEMING-VL | Unified multimodal input              | Universal medical visual reasoning | https://arxiv.org/abs/2511.00916       |
-| Med-R1     | Cross-modality generalization         | 8 imaging modalities               | https://arxiv.org/abs/2503.13939       |
-| DiagECG    | Discretized ECG tokenization          | LLM-driven ECG reasoning           | https://arxiv.org/abs/2501.01234       |
-| MedTsLLM   | Time-series + text fusion             | Patch reprogramming                | https://proceedings.mlr.press/mlhc2024 |
-| SurgVidLM  | Multi-grained surgical video modeling | Full-video → clip-level reasoning  | https://arxiv.org/abs/2506.17873       |
-| BrainGPT   | Autoregressive EEG foundation model   | Electrode-wise modeling            | https://arxiv.org/html/2410.19779v2    |
-| MOTOR      | Time-to-event modeling                | Structured EHR foundation model    | https://arxiv.org/abs/2311.04238       |
+| Model | Design Focus | Highlight | Year | Link |
+|-------|--------------|-----------|------|------|
+| FLEMING-VL | Unified multimodal input | Universal medical visual reasoning | 2025 | [Link](https://arxiv.org/abs/2511.00916) |
+| Med-R1 | Cross-modality generalization | 8 imaging modalities | 2025 | [Link](https://arxiv.org/abs/2503.13939) |
+| DiagECG | Discretized ECG tokenization | LLM-driven ECG reasoning | 2025 | [Link](https://arxiv.org/abs/2501.01234) |
+| MedTsLLM | Time-series + text fusion | Patch reprogramming | 2024 | [Link](https://proceedings.mlr.press/mlhc2024) |
+| SurgVidLM | Multi-grained surgical video modeling | Full-video → clip-level reasoning | 2025 | [Link](https://arxiv.org/abs/2506.17873) |
+| BrainGPT | Autoregressive EEG foundation model | Electrode-wise modeling | 2024 | [Link](https://arxiv.org/html/2410.19779v2) |
+| MOTOR | Time-to-event modeling | Structured EHR foundation model | 2023 | [Link](https://arxiv.org/abs/2311.04238) |
 
 #### 3.3.2 Reasoning-Oriented Objectives
 
-| Model       | Optimization Strategy            | Key Mechanism                                                | Link                             |
-| ----------- | -------------------------------- | ------------------------------------------------------------ | -------------------------------- |
-| QoQ-Med     | Domain-aware GRPO (DRPO)         | Hierarchical domain balancing                                | https://arxiv.org/abs/2506.00711 |
-| Clinical-R1 | Clinical Objective RPO (CRPO)    | Accuracy + faithfulness + comprehensiveness                  | https://arxiv.org/abs/2512.00601 |
-| Surgery-R1  | RL for surgical reasoning        | Multimodal coherence reward                                  | https://arxiv.org/abs/2506.19469 |
-| PATHVLM-R1  | RL-driven pathology reasoning    | Dual reward mechanism                                        | https://arxiv.org/abs/2504.09258 |
-| MedE²       | two-stage post-training pipeline | elicits reasoning behavior and enhances multimodal reasoning | https://arxiv.org/abs/2505.23118 |
+| Model | Optimization Strategy | Key Mechanism | Year | Link |
+|-------|----------------------|---------------|------|------|
+| QoQ-Med | Domain-aware GRPO (DRPO) | Hierarchical domain balancing | 2025 | [Link](https://arxiv.org/abs/2506.00711) |
+| Clinical-R1 | Clinical Objective RPO (CRPO) | Accuracy + faithfulness + comprehensiveness | 2025 | [Link](https://arxiv.org/abs/2512.00601) |
+| Surgery-R1 | RL for surgical reasoning | Multimodal coherence reward | 2025 | [Link](https://arxiv.org/abs/2506.19469) |
+| PATHVLM-R1 | RL-driven pathology reasoning | Dual reward mechanism | 2025 | [Link](https://arxiv.org/abs/2504.09258) |
+| MedE² | two-stage post-training pipeline | elicits reasoning behavior and enhances multimodal reasoning | 2025 | [Link](https://arxiv.org/abs/2505.23118) |
 
 ------
 
@@ -323,16 +326,16 @@ Accordingly, recent progress can be organized into two complementary dimensions:
 
 #### 4.2.1 Prompt-Embedded Knowledge
 
-| Model   | Knowledge Strategy                 | Link                             |
-| ------- | ---------------------------------- | -------------------------------- |
-| PathCoT | CoT prompting with self-evaluation | https://arxiv.org/abs/2507.01029 |
+| Model | Knowledge Strategy | Year | Link |
+|-------|-------------------|------|------|
+| PathCoT | CoT prompting with self-evaluation | 2025 | [Link](https://arxiv.org/abs/2507.01029) |
 
 #### 4.2.2 Case-Based and Reasoning Trajectory Knowledge Banks
 
-| Model        | Knowledge Source           | Link                                                        |
-| ------------ | -------------------------- | ----------------------------------------------------------- |
-| SurvAgent    | Hierarchical CoT case bank | https://arxiv.org/abs/2511.16635                            |
-| CellReasoner | 380 curated CoT exemplars  | https://www.biorxiv.org/content/10.1101/2025.05.20.655112v1 |
+| Model | Knowledge Source | Year | Link |
+|-------|------------------|------|------|
+| SurvAgent | Hierarchical CoT case bank | 2025 | [Link](https://arxiv.org/abs/2511.16635) |
+| CellReasoner | 380 curated CoT exemplars | 2025 | [Link](https://www.biorxiv.org/content/10.1101/2025.05.20.655112v1) |
 
 ------
 
@@ -340,18 +343,18 @@ Accordingly, recent progress can be organized into two complementary dimensions:
 
 #### 4.3.1 Retrieval-Oriented Reasoning Strategies
 
-| Model     | Strategy                   | Feature                         | Link                             |
-| --------- | -------------------------- | ------------------------------- | -------------------------------- |
-| DiagR1    | Prompt argumentation       | RL-trained diagnostic reasoning | https://arxiv.org/abs/2507.18433 |
-| META-RAG  | Evidence re-ranking        | Meta-analysis inspired          | https://arxiv.org/abs/2510.24003 |
-| PICOs-RAG | Structured query rewriting | PICO-guided RAG                 | https://arxiv.org/abs/2510.23998 |
+| Model | Strategy | Feature | Year | Link |
+|-------|----------|---------|------|------|
+| DiagR1 | Prompt argumentation | RL-trained diagnostic reasoning | 2025 | [Link](https://arxiv.org/abs/2507.18433) |
+| META-RAG | Evidence re-ranking | Meta-analysis inspired | 2025 | [Link](https://arxiv.org/abs/2510.24003) |
+| PICOs-RAG | Structured query rewriting | PICO-guided RAG | 2025 | [Link](https://arxiv.org/abs/2510.23998) |
 
 #### 4.3.2 Iterative Retrieval and Reasoning
 
-| Model    | Mechanism                      | Highlight                      | Link                             |
-| -------- | ------------------------------ | ------------------------------ | -------------------------------- |
-| Med- RwR | Confidence-driven re-retrieval | Joint reasoning-retrieval loop | https://arxiv.org/abs/2510.18303 |
-| TxGemma  | Agentic ReAct framework        | Thought–action interleaving    | https://arxiv.org/abs/2504.06196 |
+| Model | Mechanism | Highlight | Year | Link |
+|-------|-----------|-----------|------|------|
+| Med- RwR | Confidence-driven re-retrieval | Joint reasoning-retrieval loop | 2025 | [Link](https://arxiv.org/abs/2510.18303) |
+| TxGemma | Agentic ReAct framework | Thought–action interleaving | 2025 | [Link](https://arxiv.org/abs/2504.06196) |
 
 ------
 
@@ -370,21 +373,21 @@ Accordingly, recent developments can be summarized along two complementary dimen
 
 #### 5.2.1 Evidence and Analytical Memory
 
-| Model        | Mechanism                                      | Link                                               |
-| ------------ | ---------------------------------------------- | -------------------------------------------------- |
-| SurvAgent    | CoT-enhanced case memory                       | https://arxiv.org/abs/2511.16635                   |
-| GeneAgent    | Generation–verification–refinement loop        | https://www.nature.com/articles/s41592-025-02748-6 |
-| MedAgent-Pro | evidence-based multi-modal diagnostic workflow | https://arxiv.org/abs/2503.18968                   |
+| Model | Mechanism | Year | Link |
+|-------|-----------|------|------|
+| SurvAgent | CoT-enhanced case memory | 2025 | [Link](https://arxiv.org/abs/2511.16635) |
+| GeneAgent | Generation–verification–refinement loop | 2025 | [Link](https://www.nature.com/articles/s41592-025-02748-6) |
+| MedAgent-Pro | evidence-based multi-modal diagnostic workflow | 2025 | [Link](https://arxiv.org/abs/2503.18968) |
 
 #### 5.2.2 Structured Reasoning Workflows
 
-| Model      | Framework                        | Link                                                         |
-| ---------- | -------------------------------- | ------------------------------------------------------------ |
-| Magic      | Debate-activated graph reasoning | https://www.sciencedirect.com/science/article/pii/S1566253525006293 |
-| SurgRAW    | CoT-driven multi-agent workflow  | https://arxiv.org/abs/2503.10265                             |
-| LVAgent    | Multi-round agent collaboration  | https://arxiv.org/abs/2503.10200                             |
-| VideoAgent | Iterative frame exploration      | https://arxiv.org/abs/2403.10517                             |
-| LLM-SAP    | Situational awareness planning   | https://arxiv.org/abs/2312.16127                             |
+| Model | Framework | Year | Link |
+|-------|-----------|------|------|
+| Magic | Debate-activated graph reasoning | 2025 | [Link](https://www.sciencedirect.com/science/article/pii/S1566253525006293) |
+| SurgRAW | CoT-driven multi-agent workflow | 2025 | [Link](https://arxiv.org/abs/2503.10265) |
+| LVAgent | Multi-round agent collaboration | 2025 | [Link](https://arxiv.org/abs/2503.10200) |
+| VideoAgent | Iterative frame exploration | 2024 | [Link](https://arxiv.org/abs/2403.10517) |
+| LLM-SAP | Situational awareness planning | 2023 | [Link](https://arxiv.org/abs/2312.16127) |
 
 ------
 
@@ -392,23 +395,23 @@ Accordingly, recent developments can be summarized along two complementary dimen
 
 #### 5.3.1 Evidence Utilization and Exploration
 
-| Model         | Strategy                       | Link                             |
-| ------------- | ------------------------------ | -------------------------------- |
-| SurvAgent     | Case-based exploration         | https://arxiv.org/abs/2511.16635 |
-| VideoAgent    | Iterative visual search        | https://arxiv.org/abs/2403.10517 |
-| MMedExpert-RL | domain-specific adaptation     | https://arxiv.org/abs/2601.10949 |
-| AgentsEval    | collaborative agents to assess | https://arxiv.org/abs/2601.16685 |
+| Model | Strategy | Year | Link |
+|-------|----------|------|------|
+| SurvAgent | Case-based exploration | 2025 | [Link](https://arxiv.org/abs/2511.16635) |
+| VideoAgent | Iterative visual search | 2024 | [Link](https://arxiv.org/abs/2403.10517) |
+| MMedExpert-RL | domain-specific adaptation | 2026 | [Link](https://arxiv.org/abs/2601.10949) |
+| AgentsEval | collaborative agents to assess | 2026 | [Link](https://arxiv.org/abs/2601.16685) |
 
 #### 5.3.2 Reasoning Control and Multi-Agent Coordination
 
-| Model                      | Coordination Strategy                           | Link                             |
-| -------------------------- | ----------------------------------------------- | -------------------------------- |
-| SlideSeek                  | Plan → Region analysis → Grounded summary       | https://arxiv.org/abs/2506.20964 |
-| TxGemma                    | ReAct tool-use interleaving                     | https://arxiv.org/abs/2504.06196 |
-| MDAgents                   | Adaptive collaboration routing                  | https://arxiv.org/abs/2404.15155 |
-| Inquire-Interact-Integrate | Self-evolving zero-shot collaboration           | https://arxiv.org/abs/2405.11640 |
-| Evolving Diagnostic Agents | Virtual clinical environment adaptation         | https://arxiv.org/abs/2510.24654 |
-| Dr. Assistant              | leveraging structured diagnostic reasoning data | https://arxiv.org/abs/2601.13690 |
+| Model | Coordination Strategy | Year | Link |
+|-------|----------------------|------|------|
+| SlideSeek | Plan → Region analysis → Grounded summary | 2025 | [Link](https://arxiv.org/abs/2506.20964) |
+| TxGemma | ReAct tool-use interleaving | 2025 | [Link](https://arxiv.org/abs/2504.06196) |
+| MDAgents | Adaptive collaboration routing | 2024 | [Link](https://arxiv.org/abs/2404.15155) |
+| Inquire-Interact-Integrate | Self-evolving zero-shot collaboration | 2024 | [Link](https://arxiv.org/abs/2405.11640) |
+| Evolving Diagnostic Agents | Virtual clinical environment adaptation | 2025 | [Link](https://arxiv.org/abs/2510.24654) |
+| Dr. Assistant | leveraging structured diagnostic reasoning data | 2026 | [Link](https://arxiv.org/abs/2601.13690) |
 
 ## 📊 Benchmarking Medical Reasoning
 
@@ -418,104 +421,104 @@ Medical reasoning benchmarks span modalities from text-only exams to multimodal 
 
 #### Text Benchmarks
 
-| Benchmark | Type | Size | Venue/Year | Link |
+| Benchmark | Type | Size | Year | Link |
 |-----------|------|------|------------|------|
-| ReasonMed | Choice | 370K | arXiv 2025 | [HF](https://huggingface.co/datasets/YuSun-AI/ReasonMed) |
-| R2MED | Open-ended | 876 | arXiv 2025 | [GitHub](https://github.com/R2MED/R2MED) |
-| ER-REASON | Hybrid | 3,984 | arXiv 2025 | [GitHub](https://github.com/AlaaLab/ER-Reason) |
-| LLMEval-Med | Hybrid (ZH/EN) | 2,996 | arXiv 2025 | [GitHub](https://github.com/llmeval/LLMEval-Med) |
-| BioProBench | Hybrid | 556K | arXiv 2025 | [HF](https://huggingface.co/datasets/BioProBench/BioProBench) |
-| DiagnosisArena | Open-ended | 1,113 | arXiv 2025 | [HF](https://huggingface.co/datasets/shzyk/DiagnosisArena) |
-| HV-CR Dataset | Choice (ZH) | 30K | arXiv 2025 | [MedBench](https://medbench.opencompass.org.cn/community/data-station) |
-| BioHopR | Open-ended | 10,127 | arXiv 2025 | [HF](https://huggingface.co/datasets/knowlab-research/BioHopR) |
-| Med-HALT | Choice | 23,782 | EMNLP 2023 | [HF](https://huggingface.co/datasets/openlifescienceai/Med-HALT) |
-| MedExQA | Choice | 965 | arXiv 2024 | [HF](https://huggingface.co/datasets/bluesky333/MedExQA) |
-| DiReCT | Open-ended | 511 | NeurIPS 2024 | [GitHub](https://github.com/wbw520/DiReCT) |
-| DR.BENCH | Hybrid | 150K | JBI 2023 | [GitLab](https://git.doit.wisc.edu/smph-public/dom/uw-icu-data-science-lab-public/drbench) |
-| MedReason | Hybrid + chains | 32,682 | arXiv 2025 | [HF](https://huggingface.co/datasets/UCSC-VLAA/MedReason) |
-| MedR-Bench | Hybrid | 1,453 | arXiv 2025 | [GitHub](https://github.com/MAGIC-AI4Med/MedRBench) |
-| JAMA Clinical | Choice | 1,832 | NAACL 2025 | [GitHub](https://github.com/HanjieChen/ChallengeClinicalQA) |
-| MEDIQ | Choice | 12,901 | NeurIPS 2024 | [HF](https://huggingface.co/datasets/stellalisy/mediQ) |
-| MedQA (USMLE) | Choice | 60K+ | Applied Sciences 2021 | [GitHub](https://github.com/jind11/MedQA) |
-| PubMedQA | Open-ended | 270K+ | EMNLP 2019 | [GitHub](https://github.com/pubmedqa/pubmedqa) |
-| HuatuoGPT-o1 Dataset | Open-ended + verifier | 40K | arXiv 2024 | [HF](https://huggingface.co/datasets/FreedomIntelligence/medical-o1-reasoning-SFT) |
+| ReasonMed | Choice | 370K | 2025 | [HF](https://huggingface.co/datasets/YuSun-AI/ReasonMed) |
+| R2MED | Open-ended | 876 | 2025 | [GitHub](https://github.com/R2MED/R2MED) |
+| ER-REASON | Hybrid | 3,984 | 2025 | [GitHub](https://github.com/AlaaLab/ER-Reason) |
+| LLMEval-Med | Hybrid (ZH/EN) | 2,996 | 2025 | [GitHub](https://github.com/llmeval/LLMEval-Med) |
+| BioProBench | Hybrid | 556K | 2025 | [HF](https://huggingface.co/datasets/BioProBench/BioProBench) |
+| DiagnosisArena | Open-ended | 1,113 | 2025 | [HF](https://huggingface.co/datasets/shzyk/DiagnosisArena) |
+| HV-CR Dataset | Choice (ZH) | 30K | 2025 | [MedBench](https://medbench.opencompass.org.cn/community/data-station) |
+| BioHopR | Open-ended | 10,127 | 2025 | [HF](https://huggingface.co/datasets/knowlab-research/BioHopR) |
+| Med-HALT | Choice | 23,782 | 2023 | [HF](https://huggingface.co/datasets/openlifescienceai/Med-HALT) |
+| MedExQA | Choice | 965 | 2024 | [HF](https://huggingface.co/datasets/bluesky333/MedExQA) |
+| DiReCT | Open-ended | 511 | 2024 | [GitHub](https://github.com/wbw520/DiReCT) |
+| DR.BENCH | Hybrid | 150K | 2023 | [GitLab](https://git.doit.wisc.edu/smph-public/dom/uw-icu-data-science-lab-public/drbench) |
+| MedReason | Hybrid + chains | 32,682 | 2025 | [HF](https://huggingface.co/datasets/UCSC-VLAA/MedReason) |
+| MedR-Bench | Hybrid | 1,453 | 2025 | [GitHub](https://github.com/MAGIC-AI4Med/MedRBench) |
+| JAMA Clinical | Choice | 1,832 | 2025 | [GitHub](https://github.com/HanjieChen/ChallengeClinicalQA) |
+| MEDIQ | Choice | 12,901 | 2024 | [HF](https://huggingface.co/datasets/stellalisy/mediQ) |
+| MedQA (USMLE) | Choice | 60K+ | 2021 | [GitHub](https://github.com/jind11/MedQA) |
+| PubMedQA | Open-ended | 270K+ | 2019 | [GitHub](https://github.com/pubmedqa/pubmedqa) |
+| HuatuoGPT-o1 Dataset | Open-ended + verifier | 40K | 2024 | [HF](https://huggingface.co/datasets/FreedomIntelligence/medical-o1-reasoning-SFT) |
 
 #### Imaging Benchmarks
 
-| Benchmark | Modality | Size | Venue/Year | Link |
+| Benchmark | Modality | Size | Year | Link |
 |-----------|----------|------|------------|------|
-| DeepTumorVQA | 3D CT | 400K+ QA | arXiv 2025 | [HF](https://huggingface.co/datasets/tumor-vqa/DeepTumorVQA_1.0) |
-| PadChest-GR | X-ray (ES/EN) | 4,555 QA | arXiv 2024 | [Site](https://bimcv.cipf.es/bimcv-projects/padchest-gr/) |
-| ReXVQA | X-ray | 696K+ QA | arXiv 2025 | [HF](https://huggingface.co/datasets/rajpurkarlab/ReXVQA) |
-| MediConfusion | Multi-image | 352 cases | arXiv 2024 | [HF](https://huggingface.co/datasets/shahab7899/MediConfusion) |
-| MedReasoner / U-MRG-14K | Multi-modality + masks | 14K | arXiv 2025 | [Project](https://pris-cv.github.io/MedReasoner.github.io/) |
-| ReXGroundingCT | 3D CT grounding | 3,142 scans | arXiv 2025 | [HF](https://huggingface.co/datasets/rajpurkarlab/ReXGroundingCT) |
-| US-SceneGraph | Ultrasound scene graph | 289 samples | arXiv 2025 | [Project](https://noseefood.github.io/us-scene-graph/) |
-| LLaVA-Ultra | Ultrasound (ZH) | 188K QA | MM 2024 | [arXiv](https://arxiv.org/abs/2410.15074) |
-| HAIBU-ReMUD | Ultrasound | 45K+ | arXiv 2025 | [GitHub](https://github.com/ShiDaizi/ReMUD) |
+| DeepTumorVQA | 3D CT | 400K+ QA | 2025 | [HF](https://huggingface.co/datasets/tumor-vqa/DeepTumorVQA_1.0) |
+| PadChest-GR | X-ray (ES/EN) | 4,555 QA | 2024 | [Site](https://bimcv.cipf.es/bimcv-projects/padchest-gr/) |
+| ReXVQA | X-ray | 696K+ QA | 2025 | [HF](https://huggingface.co/datasets/rajpurkarlab/ReXVQA) |
+| MediConfusion | Multi-image | 352 cases | 2024 | [HF](https://huggingface.co/datasets/shahab7899/MediConfusion) |
+| MedReasoner / U-MRG-14K | Multi-modality + masks | 14K | 2025 | [Project](https://pris-cv.github.io/MedReasoner.github.io/) |
+| ReXGroundingCT | 3D CT grounding | 3,142 scans | 2025 | [HF](https://huggingface.co/datasets/rajpurkarlab/ReXGroundingCT) |
+| US-SceneGraph | Ultrasound scene graph | 289 samples | 2025 | [Project](https://noseefood.github.io/us-scene-graph/) |
+| LLaVA-Ultra | Ultrasound (ZH) | 188K QA | 2024 | [arXiv](https://arxiv.org/abs/2410.15074) |
+| HAIBU-ReMUD | Ultrasound | 45K+ | 2025 | [GitHub](https://github.com/ShiDaizi/ReMUD) |
 
 #### Pathology Benchmarks
 
-| Benchmark | Focus | Size | Venue/Year | Link |
+| Benchmark | Focus | Size | Year | Link |
 |-----------|-------|------|------------|------|
-| PathMMU | QA + explanations | 33,428 | ECCV 2024 | [HF](https://huggingface.co/datasets/jamessyx/PathMMU) |
-| PathQABench | MCQ + open-ended | 6 capabilities | Nature 2024 | [Paper](https://www.nature.com/articles/s41586-024-07618-3) |
-| Quilt-LLaVA Instruct | Patch-level narratives | 107K | CVPR 2024 | [HF](https://huggingface.co/datasets/wisdomik/QUILT-LLaVA-Instruct-107K) |
-| PathChat | WSI dialogues | 456K turns | Nature 2024 | [GitHub](https://github.com/fedshyvana/pathology_mllm_training) |
+| PathMMU | QA + explanations | 33,428 | 2024 | [HF](https://huggingface.co/datasets/jamessyx/PathMMU) |
+| PathQABench | MCQ + open-ended | 6 capabilities | 2024 | [Paper](https://www.nature.com/articles/s41586-024-07618-3) |
+| Quilt-LLaVA Instruct | Patch-level narratives | 107K | 2024 | [HF](https://huggingface.co/datasets/wisdomik/QUILT-LLaVA-Instruct-107K) |
+| PathChat | WSI dialogues | 456K turns | 2024 | [GitHub](https://github.com/fedshyvana/pathology_mllm_training) |
 
 #### Genomics Benchmarks
 
-| Benchmark | Focus | Size | Venue/Year | Link |
+| Benchmark | Focus | Size | Year | Link |
 |-----------|-------|------|------------|------|
-| BioReason | Multimodal biological reasoning | 87K | arXiv 2025 | [HF](https://huggingface.co/collections/wanglab/bioreason-683cd17172a037a31d208f70) |
-| Genome-Bench | Scientific QA | 3,332 | bioRxiv 2025 | [HF](https://huggingface.co/datasets/Mingyin0312/Genome-Bench) |
-| Genome-Bench++ | RL-ready benchmark | 3,332 | arXiv 2025 | [GitHub](https://github.com/mingyin0312/RL4GenomeBench) |
-| SOAR | Cell annotation arena | 24 tasks | arXiv 2024 | [arXiv](https://arxiv.org/abs/2412.02915) |
+| BioReason | Multimodal biological reasoning | 87K | 2025 | [HF](https://huggingface.co/collections/wanglab/bioreason-683cd17172a037a31d208f70) |
+| Genome-Bench | Scientific QA | 3,332 | 2025 | [HF](https://huggingface.co/datasets/Mingyin0312/Genome-Bench) |
+| Genome-Bench++ | RL-ready benchmark | 3,332 | 2025 | [GitHub](https://github.com/mingyin0312/RL4GenomeBench) |
+| SOAR | Cell annotation arena | 24 tasks | 2024 | [arXiv](https://arxiv.org/abs/2412.02915) |
 
 #### Surgery Video Benchmarks
 
-| Benchmark | Focus | Size | Venue/Year | Link |
+| Benchmark | Focus | Size | Year | Link |
 |-----------|-------|------|------------|------|
-| CARES | Evidence-grounded error detection | 20 procedures | arXiv 2025 | [arXiv](https://arxiv.org/abs/2508.08764) |
-| EndoChat | Grounded endoscopic QA | 41,400 QA | arXiv 2025 | [GitHub](https://github.com/gkw0010/EndoChat) |
-| SRT-H | Hierarchical plan following | 34 sequences | arXiv 2025 | [arXiv](https://arxiv.org/abs/2505.10251) |
-| Surgery-R1 | Surgical-VQLA + RL | 54K QA | arXiv 2025 | [GitHub](https://github.com/FiFi-HAO467/Surgery-R1) |
-| SurgCoTBench / SurgRAW | CoT QA + risk monitoring | 12 cases | arXiv 2025 | [GitHub](https://github.com/jinlab-imvr/SurgRAW) |
-| SVU-31K | Multi-grained surgical video | 31K clips | arXiv 2025 | [arXiv](https://arxiv.org/abs/2506.17873) |
-| SurgVLM Benchmark | System-level evaluation | - | arXiv 2025 | [arXiv](https://arxiv.org/abs/2506.02555) |
+| CARES | Evidence-grounded error detection | 20 procedures | 2025 | [arXiv](https://arxiv.org/abs/2508.08764) |
+| EndoChat | Grounded endoscopic QA | 41,400 QA | 2025 | [GitHub](https://github.com/gkw0010/EndoChat) |
+| SRT-H | Hierarchical plan following | 34 sequences | 2025 | [arXiv](https://arxiv.org/abs/2505.10251) |
+| Surgery-R1 | Surgical-VQLA + RL | 54K QA | 2025 | [GitHub](https://github.com/FiFi-HAO467/Surgery-R1) |
+| SurgCoTBench / SurgRAW | CoT QA + risk monitoring | 12 cases | 2025 | [GitHub](https://github.com/jinlab-imvr/SurgRAW) |
+| SVU-31K | Multi-grained surgical video | 31K clips | 2025 | [arXiv](https://arxiv.org/abs/2506.17873) |
+| SurgVLM Benchmark | System-level evaluation | - | 2025 | [arXiv](https://arxiv.org/abs/2506.02555) |
 
 #### ECG/EEG Benchmarks
 
-| Benchmark | Modality | Size | Venue/Year | Link |
+| Benchmark | Modality | Size | Year | Link |
 |-----------|----------|------|------------|------|
-| ECG-QA | ECG question answering | 400K+ QA | NeurIPS 2023 | [GitHub](https://github.com/Jwoo5/ecg-qa) |
-| CET-MAE task suite | EEG↔text reconstruction | 4 tasks | ACL 2024 | [ACL](https://aclanthology.org/2024.acl-long.352) |
-| EIT-1M | EEG + image + text triples | 1M | arXiv 2024 | [arXiv](https://arxiv.org/abs/2407.01654) |
-| EEG-FM-Bench | EEG foundation model eval | 12 datasets | arXiv 2025 | [arXiv](https://arxiv.org/abs/2508.12345) |
+| ECG-QA | ECG question answering | 400K+ QA | 2023 | [GitHub](https://github.com/Jwoo5/ecg-qa) |
+| CET-MAE task suite | EEG↔text reconstruction | 4 tasks | 2024 | [ACL](https://aclanthology.org/2024.acl-long.352) |
+| EIT-1M | EEG + image + text triples | 1M | 2024 | [arXiv](https://arxiv.org/abs/2407.01654) |
+| EEG-FM-Bench | EEG foundation model eval | 12 datasets | 2025 | [arXiv](https://arxiv.org/abs/2508.12345) |
 
 #### EHR Benchmarks
 
-| Benchmark | Focus | Size | Venue/Year | Link |
+| Benchmark | Focus | Size | Year | Link |
 |-----------|-------|------|------------|------|
-| Llemr | Instruction tuning for EHR | 260K+ prompts | NeurIPS 2024 | [GitHub](https://github.com/zzachw/llemr) |
-| RJUA-MedDQA | Chinese document QA | 2,000 | KDD 2024 | [GitHub](https://github.com/AQ-MedAI/medDQA_benchmark) |
-| EHRAgent Programs | Program-of-thought QA | 2,156 | EMNLP 2024 | [GitHub](https://github.com/wshi83/EhrAgent) |
-| EHRXQA | EHR + chest X-ray QA | 423K+ | NeurIPS 2023 | [PhysioNet](https://physionet.org/content/ehrxqa/1.0.0/) |
-| MDAgents Scenarios | Multi-agent decision making | 180 cases | NeurIPS 2024 | [GitHub](https://github.com/mitmedialab/MDAgents) |
+| Llemr | Instruction tuning for EHR | 260K+ prompts | 2024 | [GitHub](https://github.com/zzachw/llemr) |
+| RJUA-MedDQA | Chinese document QA | 2,000 | 2024 | [GitHub](https://github.com/AQ-MedAI/medDQA_benchmark) |
+| EHRAgent Programs | Program-of-thought QA | 2,156 | 2024 | [GitHub](https://github.com/wshi83/EhrAgent) |
+| EHRXQA | EHR + chest X-ray QA | 423K+ | 2023 | [PhysioNet](https://physionet.org/content/ehrxqa/1.0.0/) |
+| MDAgents Scenarios | Multi-agent decision making | 180 cases | 2024 | [GitHub](https://github.com/mitmedialab/MDAgents) |
 
 #### Multimodal Benchmarks
 
-| Benchmark | Modalities | Size | Venue/Year | Link |
+| Benchmark | Modalities | Size | Year | Link |
 |-----------|------------|------|------------|------|
-| MedXpertQA | Text + imaging | 4,460 | ICML 2025 | [HF](https://huggingface.co/datasets/TsinghuaC3I/MedXpertQA) |
-| MultiMedQA++ | Text + instructions | 194K+ | ACL 2024 | [GitHub](https://github.com/promptslab/RosettaEval) |
-| MedFrameQA | Video QA | 2,851 | arXiv 2025 | [HF](https://huggingface.co/datasets/SuhaoYu1020/MedFrameQA) |
-| BIOMEDICA | Massive multimodal archive | 24M pairs | CVPR 2025 | [HF](https://huggingface.co/BIOMEDICA) |
-| DrVD-Bench | Differential diagnosis | 7,789 | arXiv 2025 | [HF](https://huggingface.co/datasets/jerry1565/DrVD-Bench) |
-| MEDVLTHINKER Corpus | Image-text instructions | 131K+ | arXiv 2025 | [HF](https://huggingface.co/collections/UCSC-VLAA/medvlthinker-688f52224fb7ff7d965d581d) |
-| SMMILE | Multi-agent reasoning | 1,149 | arXiv 2025 | [HF](https://huggingface.co/smmile) |
-| Tree-of-Reasoning (TOR) | Multi-agent + multimodal | 952 | arXiv 2025 | [arXiv](https://arxiv.org/abs/2508.03038) |
-| BiMediX2 | Bi-lingual multimodal | 160K+ | arXiv 2024 | [GitHub](https://github.com/mbzuai-oryx/BiMediX2) |
+| MedXpertQA | Text + imaging | 4,460 | 2025 | [HF](https://huggingface.co/datasets/TsinghuaC3I/MedXpertQA) |
+| MultiMedQA++ | Text + instructions | 194K+ | 2024 | [GitHub](https://github.com/promptslab/RosettaEval) |
+| MedFrameQA | Video QA | 2,851 | 2025 | [HF](https://huggingface.co/datasets/SuhaoYu1020/MedFrameQA) |
+| BIOMEDICA | Massive multimodal archive | 24M pairs | 2025 | [HF](https://huggingface.co/BIOMEDICA) |
+| DrVD-Bench | Differential diagnosis | 7,789 | 2025 | [HF](https://huggingface.co/datasets/jerry1565/DrVD-Bench) |
+| MEDVLTHINKER Corpus | Image-text instructions | 131K+ | 2025 | [HF](https://huggingface.co/collections/UCSC-VLAA/medvlthinker-688f52224fb7ff7d965d581d) |
+| SMMILE | Multi-agent reasoning | 1,149 | 2025 | [HF](https://huggingface.co/smmile) |
+| Tree-of-Reasoning (TOR) | Multi-agent + multimodal | 952 | 2025 | [arXiv](https://arxiv.org/abs/2508.03038) |
+| BiMediX2 | Bi-lingual multimodal | 160K+ | 2024 | [GitHub](https://github.com/mbzuai-oryx/BiMediX2) |
 
 ---
 
@@ -549,9 +552,9 @@ Medical reasoning benchmarks span modalities from text-only exams to multimodal 
 If you find this survey and repository useful, please consider citing our work:
 
 ```bibtex
-@article{ying2025medical,
+@article{zheng2025medical,
   title={Towards Autonomous Decision-Making: A Survey of Multimodal Medical Reasoning},
-  author={Ying, Haochao},
+  author={Zheng, Lujie},
   note={Manuscript in preparation},
   year={2025}
 }
