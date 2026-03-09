@@ -8,7 +8,7 @@
 **📝 Paper source: [`paper/`](paper/) | ✒️ [Citation](#-citation)**
 
 > **Towards Autonomous Decision-Making: A Survey of Multimodal Medical Reasoning**  
-> *Lujie Zheng*  
+> *Lujie Zheng, Huayi Wang, Yue Wang, Wenjie Deng, Chunlai Dong, Yuyang Xu, Danny Ziyi Chen, Jian Wu, Haochao Ying*  
 > 
 > A survey of multimodal medical reasoning models, taxonomies, benchmarks, and resources for increasingly autonomous, evidence-grounded clinical decision-making.
 
