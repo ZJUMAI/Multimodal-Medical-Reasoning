@@ -13,15 +13,16 @@
 > A survey of multimodal medical reasoning models, taxonomies, benchmarks, and resources for increasingly autonomous, evidence-grounded clinical decision-making.
 
 <p align="center">
-  <img src="images/timeline.png" alt="Timeline" width="800"/>
+  <img src="images/cartoon.png" alt="overview" width="900"/>
 </p>
+
 
 ---
 
 ## 📢 News
 
-- 🔥 **[2025/10/22]** Repository initialized with survey structure
-- 📚 **[2025/10/22]** Started collecting papers on medical reasoning foundation models
+- 🔥 **[2026/3/1]** Repository initialized with survey structure
+- 📚 **[2026/3/10]** Started collecting papers on medical reasoning foundation models
 - 🚧 **[Work in Progress]** Survey paper under active development
 
 <details>
@@ -102,8 +103,9 @@ If you find this repository useful, please consider giving us a ⭐ star to stay
 ## Overview
 
 <p align="center">
-  <img src="images/cartoon.png" alt="overview" width="900"/>
+  <img src="images/timeline.png" alt="Timeline" width="800"/>
 </p>
+
 
 
 Medical reasoning has long been a central topic in artificial intelligence for medicine, referring to the cognitive processes underlying diagnostic and therapeutic decision-making as well as the understanding of disease pathology. This survey systematically analyzes medical reasoning in the age of multimodal foundation models (MFMs), covering both large language models (LLMs) and multimodal reasoning across diverse medical domains.
