@@ -1,11 +1,11 @@
 # Towards Autonomous Decision-Making: A Survey of Multimodal Medical Reasoning
 
 [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
-[![arXiv](https://img.shields.io/badge/arXiv-Coming%20Soon-b31b1b.svg)](#)
+[![SSRN](https://img.shields.io/badge/SSRN-6732520-blue.svg)](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6732520)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
 
-**📝 Paper source: [`paper/`](paper/) | ✒️ [Citation](#-citation)**
+**SSRN:** [Towards Autonomous Decision-Making: A Survey of Multimodal Medical Reasoning](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6732520)
 
 > **Towards Autonomous Decision-Making: A Survey of Multimodal Medical Reasoning**  
 > *Lujie Zheng, Huayi Wang, Yue Wang, Wenjie Deng, Chunlai Dong, Yuyang Xu, Danny Ziyi Chen, Jian Wu, Haochao Ying*  
@@ -76,8 +76,6 @@
   - [4.1 Benchmark Categories](#41-benchmark-categories)
   - [4.2 Evaluation Metrics](#42-evaluation-metrics)
   - [4.3 Performance Analysis](#43-performance-analysis)
-- [🗂️ Medical Domain Datasets](#-medical-domain-datasets)
-- [🛠️ Tools and Resources](#-tools-and-resources)
 - [📚 Citation](#-citation)
 - [🤝 Contributing](#-contributing)
 - [⭐ Star History](#-star-history)
@@ -597,9 +595,8 @@ We welcome contributions to this repository! Please see our [CONTRIBUTING.md](CO
 
 ## 📧 Contact
 
-- **Maintainer**: Haochao Ying
-- **Issues**: [GitHub Issues](https://github.com/QiyaoZheng7/try/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/QiyaoZheng7/try/discussions)
+- **Maintainer**: [Haochao Ying](mailto:haochaoying@zju.edu.cn) (`haochaoying@zju.edu.cn`)
+- **Issues**: [GitHub Issues](https://github.com/ZJUMAI/Multimodal-Medical-Reasoning/issues)
 
 ---
 
