@@ -23,14 +23,14 @@
 
 - 🔥 **[2026/3/1]** Repository initialized with survey structure
 - 📚 **[2026/3/10]** Started collecting papers on medical reasoning foundation models
-- 🚧 **[Work in Progress]** Survey paper under active development
+- ✅ **[2026/5/14]** Survey completed and posted on SSRN: [abstract_id=6732520](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6732520)
 
 <details>
 <summary>📰 <b>Show More News</b></summary>
 
-- ✍️ Paper writing in progress
-- 📊 Collecting and organizing relevant literature
-- 🎯 Building comprehensive taxonomy of medical reasoning approaches
+- ✍️ Paper writing completed
+- 📊 Literature collection and organization completed for the current release
+- 🎯 Comprehensive taxonomy of medical reasoning approaches finalized for the SSRN version
 
 </details>
 
@@ -552,11 +552,13 @@ Medical reasoning benchmarks span modalities from text-only exams to multimodal 
 If you find this survey and repository useful, please consider citing our work:
 
 ```bibtex
-@article{zheng2025medical,
-  title={Towards Autonomous Decision-Making: A Survey of Multimodal Medical Reasoning},
-  author={Zheng, Lujie},
-  note={Manuscript in preparation},
-  year={2025}
+@misc{zheng2026autonomous,
+  title        = {Towards Autonomous Decision-Making: A Survey of Multimodal Medical Reasoning},
+  author       = {Zheng, Lujie},
+  year         = {2026},
+  note         = {SSRN preprint. Publication status: Under Review},
+  url          = {https://ssrn.com/abstract=6732520},
+  doi          = {10.2139/ssrn.6732520}
 }
 ```
 
